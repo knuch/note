@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from 'react';
+import TodoListItem from './TodoListItem';
+import { todosReducer } from './reducers';
+import { iState, tAction } from './definitions';
 
-function App() {
+const initialState: iState = {
+  todos: [],
+  mode: 'view'
+}
+
+type ContextProps = undefined | { state: iState, dispatch: React.Dispatch<tAction> }
+const AppContext = React.createContext<ContextProps>(undefined);
+
+const App: React.FC = () => {
+
+  const [state, dispatch] = useReducer(todosReducer, initialState);
+
+  const newNote = () => {
+    dispatch({ type: 'NEW' });
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={{ state, dispatch }}>
+      <button onClick={newNote} >+ New note</button>
+      { state.todos.map(todo => (
+        <TodoListItem
+          id={todo.id}
+          text={todo.text}
+        />
+      ))}
+    </AppContext.Provider>
   );
 }
 
