@@ -1,19 +1,21 @@
 
-export interface iTodo {
+export interface Todo {
   id: string;
   title: string;
   text: string;
   completed: boolean;
 }
 
-export interface iState {
-  todos: Array<iTodo>;
+export interface State {
+  todos: Array<Todo>;
+  currentTodo?: Todo
   mode: string;
 }
 
-export type tAction =
+export type Action =
   | { type: 'VIEW' }
   | { type: 'NEW' }
-  | { type: 'EDIT', todo: iTodo }
-  | { type: 'SAVE', todo: iTodo }
+  | { type: 'EDIT' }
+  | { type: 'SAVE', todo: Todo }
+  | { type: 'SELECT', id: string }
   | { type: 'DELETE', id: string }

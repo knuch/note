@@ -1,0 +1,120 @@
+* {
+  margin:0;
+  padding:0;
+  font-size:100%;
+  line-height:1;
+  box-sizing: border-box;
+}
+
+.todo-columns {
+  display: flex;
+  flex-flow: row wrap;
+  background-color: white;
+  min-height: calc( 100vh - 4rem);
+}
+
+.todo-head {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 4rem;
+  padding: 1rem;
+  flex-grow: 0;
+    background-color: #dcdcdc;
+}
+
+button {
+  background-color: #676a66;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #969896
+}
+
+button[disabled]:hover {
+  cursor: not-allowed;
+}
+
+button + button {
+  margin-left: 1rem;
+}
+
+.todo-pane-left {
+  flex: 0 0 35%;
+  border: 1px solid grey;
+
+}
+
+.todo-pane-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  flex: 0 0 65%;
+  border: 1px solid grey;
+  padding: 1rem;
+  background-color: #dcdcdc;
+}
+
+.todo-pane-right > * {
+  flex: 0 0 100%;
+}
+
+.todo-select {
+  padding: 1rem;
+  border-bottom: 1px solid grey;
+}
+
+.todo-select.active:hover {
+  cursor: pointer;
+  background-color: #f7f7f7;
+}
+
+.todo-select.disabled:hover {
+  cursor: not-allowed;
+}
+
+.todo-select.todo-current,
+.todo-select.todo-current:hover{
+  background-color: #91e85257;
+}
+
+.todo-pane-right .head,
+.todo-pane-right .content,
+.todo-pane-right .controls {
+  display: flex;
+  border: 1px solid grey;
+  padding: 1rem;
+  background: white;
+}
+
+input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.todo-pane-right .controls {
+  margin-top: 1rem;
+}
+
+.todo-pane-right .head,
+.todo-pane-right .controls {
+  flex: 0 05rem;
+}
+
+.todo-pane-right .content {
+  flex: 1 0 auto;
+  margin-top: 1rem;
+}
+
+textarea {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+}
