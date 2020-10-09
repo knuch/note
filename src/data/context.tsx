@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 const initialState: State = {
   currentNote: undefined,
   mode: 'view',
+  loading: false,
   notes: [
     {
       title: 'My first note',
