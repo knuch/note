@@ -1,9 +1,9 @@
 import React from 'react';
-import TodoItem from './components/TodoItem';
-import TodoDetail from './components/TodoDetail';
+import NoteItem from './components/NoteItem';
+import NoteDetail from './components/NoteDetail';
 import './styles/App.css';
 import { useAppContext } from './data/context';
-import { Todo } from './data/definitions'
+import { Note } from './data/definitions'
 
 const App: React.FC = () => {
   const context = useAppContext();
@@ -17,27 +17,27 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div className="todo-head">
+      <div className="note-head">
         {state.mode === 'view' && <button onClick={newNote} >+ New note</button>}
         {state.mode === 'edit' && <button disabled >+ New note</button>}
       </div>
-      <div className="todo-columns">
-        {/* Left pane: Todo List */}
-        <div className="todo-pane-left">
-          {state.todos.map((todo: Todo) => (
-            <TodoItem
-              id={todo.id}
-              title={todo.title}
-              isCurrent={state.currentTodo ? state.currentTodo.id === todo.id : false}
+      <div className="note-columns">
+        {/* Left pane: Note List */}
+        <div className="note-pane-left">
+          {state.notes.map((note: Note) => (
+            <NoteItem
+              id={note.id}
+              title={note.title}
+              isCurrent={state.currentNote ? state.currentNote.id === note.id : false}
             />
           ))}
         </div>
 
-        {/* Left pane: Todo detail */}
-        <div className="todo-pane-right">
+        {/* Left pane: Note detail */}
+        <div className="note-pane-right">
           {
-            state.currentTodo && <TodoDetail
-              todo={state.currentTodo}
+            state.currentNote && <NoteDetail
+              note={state.currentNote}
               mode={state.mode}
             />
           }

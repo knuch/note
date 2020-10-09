@@ -1,5 +1,5 @@
 
-export interface Todo {
+export interface Note {
   id: string;
   title: string;
   text: string;
@@ -7,8 +7,8 @@ export interface Todo {
 }
 
 export interface State {
-  todos: Array<Todo>;
-  currentTodo?: Todo
+  notes: Array<Note>;
+  currentNote?: Note
   mode: string;
 }
 
@@ -16,6 +16,6 @@ export type Action =
   | { type: 'VIEW' }
   | { type: 'NEW' }
   | { type: 'EDIT' }
-  | { type: 'SAVE', todo: Todo }
+  | { type: 'SAVE', note: Note }
   | { type: 'SELECT', id: string }
   | { type: 'DELETE', id: string }

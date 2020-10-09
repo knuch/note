@@ -9,14 +9,14 @@
 }
 
 /* Layout */
-.todo-columns {
+.note-columns {
   display: flex;
   flex-flow: row wrap;
   background-color: white;
   min-height: calc( 100vh - 4rem);
 }
 
-.todo-head {
+.note-head {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -26,12 +26,12 @@
   background-color: #dcdcdc;
 }
 
-.todo-pane-left {
+.note-pane-left {
   flex: 0 0 35%;
   border: 1px solid grey;
 }
 
-.todo-pane-right {
+.note-pane-right {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
@@ -41,38 +41,38 @@
   background-color: #dcdcdc;
 }
 
-.todo-pane-right > * {
+.note-pane-right > * {
   flex: 0 0 100%;
 }
 
-.todo-pane-right .head,
-.todo-pane-right .content,
-.todo-pane-right .controls {
+.note-pane-right .head,
+.note-pane-right .content,
+.note-pane-right .controls {
   display: flex;
   border: 1px solid grey;
   background: white;
 }
 
-.todo-pane-right .content {
+.note-pane-right .content {
   padding: 2rem;
 }
 
-.todo-pane-right .content .markdown > * + * {
+.note-pane-right .content .markdown > * + * {
   margin-top: 1rem;
 }
 
-.todo-pane-right .controls {
+.note-pane-right .controls {
   margin-top: 1rem;
 }
 
-.todo-pane-right .head,
-.todo-pane-right .controls {
+.note-pane-right .head,
+.note-pane-right .controls {
   flex: 0 05rem;
   align-items: center;
   padding: 1rem;
 }
 
-.todo-pane-right .content {
+.note-pane-right .content {
   flex: 1 0 auto;
   margin-top: 1rem;
 }
@@ -101,24 +101,24 @@ button + button {
   margin-left: 1rem;
 }
 
-/* Todo select */
+/* Note select */
 
-.todo-select {
+.note-select {
   padding: 1rem;
   border-bottom: 1px solid grey;
 }
 
-.todo-select.active:hover {
+.note-select.active:hover {
   cursor: pointer;
   background-color: #f7f7f7;
 }
 
-.todo-select.disabled:hover {
+.note-select.disabled:hover {
   cursor: not-allowed;
 }
 
-.todo-select.todo-current,
-.todo-select.todo-current:hover{
+.note-select.note-current,
+.note-select.note-current:hover{
   background-color: #91e85257;
 }
 

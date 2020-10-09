@@ -1,12 +1,12 @@
 import React, { useContext, useReducer } from 'react';
 import { Action, State } from './definitions';
-import { todosReducer } from './reducers';
+import { notesReducer } from './reducers';
 import { nanoid } from 'nanoid';
 
 const initialState: State = {
-  currentTodo: undefined,
+  currentNote: undefined,
   mode: 'view',
-  todos: [
+  notes: [
     {
       title: 'My first note',
       id: nanoid(),
@@ -37,7 +37,7 @@ export const useAppContext: () => ContextProps = () => {
 
 const ContextProvider: (args: any) => any = ({ children }) => {
   const AppContextProvider = AppContext.Provider;
-  const [state, dispatch] = useReducer(todosReducer, initialState);
+  const [state, dispatch] = useReducer(notesReducer, initialState);
 
   return (
     <AppContextProvider value={{ state, dispatch }

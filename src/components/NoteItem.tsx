@@ -1,19 +1,19 @@
 import React from 'react';
 import { useAppContext } from '../data/context';
 
-interface TodoListItemProps {
+interface NoteListItemProps {
   id: string
   title: string;
   isCurrent: boolean;
 }
 
-const TodoListItem: React.FC<TodoListItemProps> = ({ id, title, isCurrent }) => {
+const NoteListItem: React.FC<NoteListItemProps> = ({ id, title, isCurrent }) => {
 
   const context = useAppContext();
   if (!context) return null;
   const { state, dispatch } = context;
 
-  const handleSelectTodo = (id: string, dispatch: any) => {
+  const handleSelectNote = (id: string, dispatch: any) => {
     dispatch({ type: 'SELECT', id: id });
   }
 
@@ -21,15 +21,15 @@ const TodoListItem: React.FC<TodoListItemProps> = ({ id, title, isCurrent }) => 
     <>
       { state.mode === 'view' &&
         <div
-          className={`todo-select active ${isCurrent ? ' todo-current' : ''}`}
-          onClick={() => handleSelectTodo(id, dispatch)}
+          className={`note-select active ${isCurrent ? ' note-current' : ''}`}
+          onClick={() => handleSelectNote(id, dispatch)}
         >
           {`${title}`}
         </div>
       }
       { state.mode === 'edit' &&
         <div
-          className={`todo-select disabled ${isCurrent ? ' todo-current' : ''}`}
+          className={`note-select disabled ${isCurrent ? ' note-current' : ''}`}
         >
           {`${title}`}
         </div>
@@ -38,4 +38,4 @@ const TodoListItem: React.FC<TodoListItemProps> = ({ id, title, isCurrent }) => 
   );
 }
 
-export default TodoListItem;
+export default NoteListItem;
