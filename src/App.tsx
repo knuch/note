@@ -1,5 +1,5 @@
 import React from 'react';
-import NoteItem from './components/NoteItem';
+import NoteList from './components/NoteList';
 import NoteDetail from './components/NoteDetail';
 import './styles/App.css';
 import { useAppContext } from './data/context';
@@ -22,27 +22,19 @@ const App: React.FC = () => {
       </div>
       <div className="note-columns">
         {/* Left pane: Note List */}
-        <div className={`note-pane-left ${state.mode === 'edit' ? 'disabled-zone' : ''}`} >
-          {state.notes.map((note: Note) => (
-            <NoteItem
-              key={note.id}
-              id={note.id}
-              title={note.title}
-              isCurrent={state.currentNote ? state.currentNote.id === note.id : false}
-            />
-          ))}
-        </div>
+        <NoteList
+          mode={state.mode}
+          notes={state.notes}
+          currentNote={state.currentNote?.id}
+        />
 
         {/* Left pane: Note detail */}
-        <div className="note-pane-right">
-          {
-            state.currentNote && <NoteDetail
-              note={state.currentNote}
-              mode={state.mode}
-            />
-          }
-
-        </div>
+        {
+          state.currentNote && <NoteDetail
+            note={state.currentNote}
+            mode={state.mode}
+          />
+        }
       </div>
     </>
   );

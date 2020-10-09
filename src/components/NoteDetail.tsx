@@ -52,36 +52,38 @@ const NoteListItem: React.FC<NoteDetailProps> = ({ note }) => {
   }
 
   return (
-    <div className={`p-1 ${loading ? 'loading-zone' : ''}`}>
-      <div className="head">
-        {mode === 'view' && <div>{tempNote.title}</div>}
-        {mode === 'edit' && (
-          <input type="text" value={tempNote.title} onChange={handleTitleChange} />
-        )}
+    <div className="note-pane-right">
+      <div className={`p-1 ${loading ? 'loading-zone' : ''}`}>
+        <div className="head">
+          {mode === 'view' && <div>{tempNote.title}</div>}
+          {mode === 'edit' && (
+            <input type="text" value={tempNote.title} onChange={handleTitleChange} />
+          )}
 
-      </div>
-      <div className="content">
-        {mode === 'view' && <Markdown className="markdown">{tempNote.text}</Markdown>}
-        {mode === 'edit' && (
-          <textarea value={tempNote.text} onChange={handleTextChange} />
-        )}
+        </div>
+        <div className="content">
+          {mode === 'view' && <Markdown className="markdown">{tempNote.text}</Markdown>}
+          {mode === 'edit' && (
+            <textarea value={tempNote.text} onChange={handleTextChange} />
+          )}
 
-      </div>
-      <div className={`controls ${mode === 'edit' && state.loading ? 'loading-zone' : ''}`}>
-        {
-          mode === 'view'
-            ? <button onClick={() => dispatch({ type: 'EDIT' })}>Edit</button>
-            : <>
-              <button onClick={() => dispatch({ type: 'VIEW' })}>Cancel</button>
-              <div>
-                {loading
-                  ? <button disabled>Saving...</button>
-                  : <button onClick={() => handleSaveAsync(tempNote)}>Save</button>
-                }
-                <button onClick={() => dispatch({ type: 'DELETE', id: tempNote.id })}>Delete this note</button>
-              </div>
-            </>
-        }
+        </div>
+        <div className={`controls ${mode === 'edit' && state.loading ? 'loading-zone' : ''}`}>
+          {
+            mode === 'view'
+              ? <button onClick={() => dispatch({ type: 'EDIT' })}>Edit</button>
+              : <>
+                <button onClick={() => dispatch({ type: 'VIEW' })}>Cancel</button>
+                <div>
+                  {loading
+                    ? <button disabled>Saving...</button>
+                    : <button onClick={() => handleSaveAsync(tempNote)}>Save</button>
+                  }
+                  <button onClick={() => dispatch({ type: 'DELETE', id: tempNote.id })}>Delete this note</button>
+                </div>
+              </>
+          }
+        </div>
       </div>
     </div>
   );
