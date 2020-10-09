@@ -9,24 +9,33 @@ interface NoteDetailProps {
   mode: string
 }
 
-const NoteListItem: React.FC<NoteDetailProps> = ({ note, mode }) => {
-
-  const context = useAppContext();
+const NoteListItem: React.FC<NoteDetailProps> = ({ note }) => {
   const [tempNote, setTempNote] = useState({ ...note });
   const [loading, setLoading] = useState(true);
 
+  const context = useAppContext();
+  const { dispatch, state } = context;
+  const mode = state.mode;
+
   useEffect(() => {
     setLoading(true);
-    const tempNode = { ...note };
-    decrypt(tempNode.text).then(decryptedText => {
-      tempNode.text = decryptedText;
-      setTempNote(tempNode);
-      setLoading(false);
-    });
-  }, [note]);
+    const newNote = { ...note };
 
-  if (!context) return null;
-  const { state, dispatch } = context;
+    if (newNote.text.length === 0) {
+      // no decryption for empty notes
+      setTempNote(newNote);
+      setLoading(false);
+      dispatch({ type: 'LOADING_END' });
+    } else {
+      // decrypt note and update global lading state
+      decrypt(newNote.text).then(decryptedText => {
+        newNote.text = decryptedText;
+        setTempNote(newNote);
+        setLoading(false);
+        dispatch({ type: 'LOADING_END' });
+      });
+    }
+  }, [note, dispatch]);
 
   const handleTitleChange = (e: any) => {
     setTempNote({ ...tempNote, title: e.target.value })
@@ -58,22 +67,20 @@ const NoteListItem: React.FC<NoteDetailProps> = ({ note, mode }) => {
         )}
 
       </div>
-      <div className={`controls ${state.loading ? 'loading-zone' : ''}`}>
+      <div className={`controls ${mode === 'edit' && state.loading ? 'loading-zone' : ''}`}>
         {
           mode === 'view'
             ? <button onClick={() => dispatch({ type: 'EDIT' })}>Edit</button>
-            : (
-              <>
-                <button onClick={() => dispatch({ type: 'VIEW' })}>Cancel</button>
-                <div>
-                  {state.loading
-                    ? <button disabled>Saving...</button>
-                    : <button onClick={() => handleSaveAsync(tempNote)}>Save</button>
-                  }
-                  <button onClick={() => dispatch({ type: 'DELETE', id: tempNote.id })}>Delete this note</button>
-                </div>
-              </>
-            )
+            : <>
+              <button onClick={() => dispatch({ type: 'VIEW' })}>Cancel</button>
+              <div>
+                {loading
+                  ? <button disabled>Saving...</button>
+                  : <button onClick={() => handleSaveAsync(tempNote)}>Save</button>
+                }
+                <button onClick={() => dispatch({ type: 'DELETE', id: tempNote.id })}>Delete this note</button>
+              </div>
+            </>
         }
       </div>
     </div>

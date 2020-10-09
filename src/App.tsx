@@ -25,6 +25,7 @@ const App: React.FC = () => {
         <div className={`note-pane-left ${state.mode === 'edit' ? 'disabled-zone' : ''}`} >
           {state.notes.map((note: Note) => (
             <NoteItem
+              key={note.id}
               id={note.id}
               title={note.title}
               isCurrent={state.currentNote ? state.currentNote.id === note.id : false}

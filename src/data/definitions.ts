@@ -20,3 +20,4 @@ export type Action =
   | { type: 'SELECT', id: string }
   | { type: 'DELETE', id: string }
   | { type: 'LOADING' }
+  | { type: 'LOADING_END' }

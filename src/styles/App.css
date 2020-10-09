@@ -164,8 +164,10 @@ textarea {
 .loading-zone:after {
   content: 'Loading...';
   position: absolute;
+  width: 100%;
+  text-align: center;
   top: calc(50% - 0.5rem);
-  left: 50%;
+  left: 0;
 }
 
 .loading-zone:before {

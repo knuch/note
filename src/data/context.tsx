@@ -2,34 +2,38 @@ import React, { useContext, useReducer } from 'react';
 import { Action, State } from './definitions';
 import { notesReducer } from './reducers';
 import { nanoid } from 'nanoid';
+import { loadPersistedNotes } from './utils';;
+
+const savedNotes = loadPersistedNotes();
+const defaultnotes = [
+  {
+    title: 'My first note',
+    id: nanoid(),
+    text: '#Markdown text'
+  },
+  {
+    title: 'My second note',
+    id: nanoid(),
+    text: '#Markdown text'
+  },
+  {
+    title: 'My third note',
+    id: nanoid(),
+    text: '#Markdown text'
+  }
+];
 
 const initialState: State = {
   currentNote: undefined,
   mode: 'view',
   loading: false,
-  notes: [
-    {
-      title: 'My first note',
-      id: nanoid(),
-      text: '#Markdown text'
-    },
-    {
-      title: 'My second note',
-      id: nanoid(),
-      text: '#Markdown text'
-    },
-    {
-      title: 'My third note',
-      id: nanoid(),
-      text: '#Markdown text'
-    }
-  ]
+  notes: savedNotes ? savedNotes : defaultnotes
 }
 
-type ContextProps = undefined | { state: State, dispatch: React.Dispatch<Action> }
-const AppContext = React.createContext<ContextProps>(undefined);
+type ContextType = { state: State, dispatch: React.Dispatch<Action> }
+const AppContext = React.createContext<ContextType>(undefined!);
 
-export const useAppContext: () => ContextProps = () => {
+export const useAppContext: () => ContextType = () => {
   return useContext(AppContext);
 }
 

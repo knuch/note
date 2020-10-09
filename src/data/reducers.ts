@@ -2,21 +2,34 @@ import { nanoid } from 'nanoid';
 import { Action, State } from './definitions';
 
 export const notesReducer = (state: State, action: Action): State => {
-  // globally block interactions with the state when the app is loading, except for save
-  if (action.type !== 'SAVE' && state.loading) return { ...state };
+  /* globally block interactions with the state when the app is loading
+  * except for actions that end the loading state
+  */
+  if (state.loading) {
+    switch (action.type) {
+      case 'SAVE':
+        break;
+      case 'LOADING_END':
+        break;
+      default:
+        return { ...state }
+    }
+  }
 
   switch (action.type) {
     case 'EDIT':
       return { ...state, mode: 'edit' };
     case 'LOADING':
       return { ...state, loading: true };
+    case 'LOADING_END':
+      return { ...state, loading: false };
     case 'NEW':
       // don't allow new when editing a note
       if (state.mode === 'edit') return { ...state };
       const newNote = {
         id: nanoid(),
         title: 'Note title',
-        text: 'Note content'
+        text: ''
       };
       return {
         ...state,
@@ -54,6 +67,7 @@ export const notesReducer = (state: State, action: Action): State => {
       if (state.mode === 'edit') return { ...state };
       return {
         ...state,
+        loading: true,
         currentNote: state.notes.find(note => note.id === action.id)
       };
     default:
