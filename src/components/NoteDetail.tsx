@@ -46,12 +46,12 @@ const NoteListItem: React.FC<NoteDetailProps> = ({ note, mode }) => {
       <div className="controls">
         {
           mode === 'view'
-            ? <button onClick={() => context.dispatch({ type: 'EDIT' })}>Edit</button>
+            ? <button onClick={() => context.dispatch({ type: 'EDIT' })}>📝 Edit</button>
             : (
               <>
-                <button onClick={() => context.dispatch({ type: 'VIEW' })}>Cancel</button>
-                <button onClick={() => context.dispatch({ type: 'SAVE', note: tempNote })}>Save</button>
-                <button onClick={() => context.dispatch({ type: 'DELETE', id: tempNote.id })}>Delete</button>
+                <button onClick={() => context.dispatch({ type: 'VIEW' })}>🙅‍♂️ Cancel</button>
+                <button onClick={() => context.dispatch({ type: 'SAVE', note: tempNote })}>💾 Save</button>
+                <button onClick={() => context.dispatch({ type: 'DELETE', id: tempNote.id })}>🗑 Delete</button>
               </>
             )
         }

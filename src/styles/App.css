@@ -80,9 +80,9 @@
 
 /* buttons */
 button {
-  background-color: #676a66;
-  color: white;
-  border: none;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
   border-radius: 4px;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s ease;
@@ -90,7 +90,7 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-color: #969896
+  background-color: #f7f7f7
 }
 
 button[disabled]:hover {
@@ -133,4 +133,24 @@ textarea {
   display: flex;
   width: 100%;
   padding: 1rem;
+}
+
+/* disabled state */
+.disabled-zone {
+  position: relative;
+}
+
+.disabled-zone:before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.5
+}
+
+.disabled-zone:hover {
+  cursor: not-allowed;
 }

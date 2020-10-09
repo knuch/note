@@ -17,13 +17,12 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div className="note-head">
-        {state.mode === 'view' && <button onClick={newNote} >+ New note</button>}
-        {state.mode === 'edit' && <button disabled >+ New note</button>}
+      <div className={`note-head ${state.mode === 'edit' ? 'disabled-zone' : ''}`}>
+        <button onClick={newNote} >+ New note</button>
       </div>
       <div className="note-columns">
         {/* Left pane: Note List */}
-        <div className="note-pane-left">
+        <div className={`note-pane-left ${state.mode === 'edit' ? 'disabled-zone' : ''}`} >
           {state.notes.map((note: Note) => (
             <NoteItem
               id={note.id}

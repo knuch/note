@@ -6,6 +6,8 @@ export const notesReducer = (state: State, action: Action): State => {
     case 'EDIT':
       return { ...state, mode: 'edit' };
     case 'NEW':
+      // don't allow new when editing a note
+      if (state.mode === 'edit') return { ...state };
       return {
         ...state,
         notes: [
@@ -40,6 +42,8 @@ export const notesReducer = (state: State, action: Action): State => {
       newState.notes = state.notes.filter(note => note.id !== action.id);
       return newState;
     case 'SELECT':
+      // don't allow select when editing a note
+      if (state.mode === 'edit') return { ...state };
       return {
         ...state,
         currentNote: state.notes.find(note => note.id === action.id)
