@@ -2,7 +2,7 @@ import React, { useContext, useReducer } from 'react';
 import { Action, State } from './definitions';
 import { notesReducer } from './reducers';
 import { nanoid } from 'nanoid';
-import { loadPersistedNotes } from './utils';;
+import { loadPersistedNotes } from './utils';
 
 const savedNotes = loadPersistedNotes();
 const defaultnotes = [

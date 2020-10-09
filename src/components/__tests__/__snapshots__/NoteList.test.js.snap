@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoteList renders correctly 1`] = `
+<NoteList
+  mode="view"
+  notes={
+    Array [
+      Object {
+        "id": "ID-1",
+        "text": "#Markdown text",
+        "title": "My first note",
+      },
+      Object {
+        "id": "ID-2",
+        "text": "#Markdown text",
+        "title": "My second note",
+      },
+      Object {
+        "id": "ID-3",
+        "text": "#Markdown text",
+        "title": "My third note",
+      },
+    ]
+  }
+>
+  <div
+    className="note-pane-left "
+  >
+    <NoteListItem
+      id="ID-1"
+      isCurrent={false}
+      key="ID-1"
+      title="My first note"
+    />
+    <NoteListItem
+      id="ID-2"
+      isCurrent={false}
+      key="ID-2"
+      title="My second note"
+    />
+    <NoteListItem
+      id="ID-3"
+      isCurrent={false}
+      key="ID-3"
+      title="My third note"
+    />
+  </div>
+</NoteList>
+`;

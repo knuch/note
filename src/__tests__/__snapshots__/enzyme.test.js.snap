@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Enzyme mount works 1`] = `
+<div>
+  <div>
+    <p>
+      shallow
+    </p>
+    <div>
+      <div>
+        <div>
+          <p>
+            deep
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Enzyme shallow works 1`] = `
+<div>
+  <div>
+    <p>
+      shallow
+    </p>
+    <div>
+      <div>
+        <div>
+          <p>
+            deep
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
