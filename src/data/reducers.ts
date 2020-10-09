@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import { Action, State } from './definitions';
+import { persistNotes } from './utils';
 
 export const notesReducer = (state: State, action: Action): State => {
   /* globally block interactions with the state when the app is loading
@@ -31,27 +32,30 @@ export const notesReducer = (state: State, action: Action): State => {
         title: 'Note title',
         text: ''
       };
+      const newNotes = [
+        ...state.notes,
+        newNote
+      ];
+      persistNotes(newNotes);
       return {
         ...state,
-        notes: [
-          ...state.notes,
-          newNote
-        ],
+        notes: newNotes,
         currentNote: newNote,
         mode: 'edit'
       };
     case 'VIEW':
       return { ...state, mode: 'view' };
     case 'SAVE':
-      const newNotes = [...state.notes];
-      newNotes.splice(
+      const savedNotes = [...state.notes];
+      savedNotes.splice(
         state.notes.findIndex(note => note.id === action.note.id),
         1,
         action.note
       )
+      persistNotes(savedNotes);
       return {
         ...state,
-        notes: newNotes,
+        notes: savedNotes,
         mode: 'view',
         loading: false
       };
@@ -61,6 +65,7 @@ export const notesReducer = (state: State, action: Action): State => {
         newState.currentNote = undefined;
       }
       newState.notes = state.notes.filter(note => note.id !== action.id);
+      persistNotes(newState.notes);
       return newState;
     case 'SELECT':
       // don't allow select when editing a note

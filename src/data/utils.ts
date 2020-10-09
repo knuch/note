@@ -24,7 +24,6 @@ export const loadPersistedNotes = () => {
   return JSON.parse(persistedNotes);
 }
 
-export const persistNotes = (notes: [Note]) => {
-  console.log(notes);
-  // localStorage.setItem(localStorageKey, JSON.stringify(notes));
+export const persistNotes = (notes: Note[]) => {
+  localStorage.setItem(localStorageKey, JSON.stringify(notes));
 }

@@ -3,7 +3,6 @@ import NoteList from './components/NoteList';
 import NoteDetail from './components/NoteDetail';
 import './styles/App.css';
 import { useAppContext } from './data/context';
-import { Note } from './data/definitions'
 
 const App: React.FC = () => {
   const context = useAppContext();
