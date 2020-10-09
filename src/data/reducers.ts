@@ -8,17 +8,19 @@ export const notesReducer = (state: State, action: Action): State => {
     case 'NEW':
       // don't allow new when editing a note
       if (state.mode === 'edit') return { ...state };
+      const newNote = {
+        id: nanoid(),
+        title: 'Note title',
+        text: 'Note content'
+      };
       return {
         ...state,
         notes: [
           ...state.notes,
-          {
-            id: nanoid(),
-            title: 'My new node title',
-            text: '',
-            completed: false
-          }
-        ]
+          newNote
+        ],
+        currentNote: newNote,
+        mode: 'edit'
       };
     case 'VIEW':
       return { ...state, mode: 'view' };

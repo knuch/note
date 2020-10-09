@@ -10,20 +10,17 @@ const initialState: State = {
     {
       title: 'My first note',
       id: nanoid(),
-      text: '#Markdown text',
-      completed: false,
+      text: '#Markdown text'
     },
     {
       title: 'My second note',
       id: nanoid(),
-      text: '#Markdown text',
-      completed: false,
+      text: '#Markdown text'
     },
     {
       title: 'My third note',
       id: nanoid(),
-      text: '#Markdown text',
-      completed: false,
+      text: '#Markdown text'
     }
   ]
 }
