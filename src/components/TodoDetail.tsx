@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Todo } from './definitions';
-import { useAppContext } from './context';
+import { Todo } from '../data/definitions';
+import { useAppContext } from '../data/context';
+import Markdown from 'markdown-to-jsx';
 
 interface TodoDetailProps {
   todo: Todo,
@@ -36,7 +37,7 @@ const TodoListItem: React.FC<TodoDetailProps> = ({ todo, mode }) => {
 
       </div>
       <div className="content">
-        {mode === 'view' && tempTodo.text}
+        {mode === 'view' && <Markdown className="markdown">{tempTodo.text}</Markdown>}
         {mode === 'edit' && (
           <textarea value={tempTodo.text} onChange={handleTextChange} />
         )}

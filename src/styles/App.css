@@ -1,4 +1,6 @@
+/* reset */
 * {
+  font-family: 'Montserrat', sans-serif;
   margin:0;
   padding:0;
   font-size:100%;
@@ -6,6 +8,7 @@
   box-sizing: border-box;
 }
 
+/* Layout */
 .todo-columns {
   display: flex;
   flex-flow: row wrap;
@@ -20,9 +23,62 @@
   height: 4rem;
   padding: 1rem;
   flex-grow: 0;
-    background-color: #dcdcdc;
+  background-color: #dcdcdc;
 }
 
+.todo-pane-left {
+  flex: 0 0 35%;
+  border: 1px solid grey;
+}
+
+.todo-pane-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  flex: 0 0 65%;
+  border: 1px solid grey;
+  padding: 1rem;
+  background-color: #dcdcdc;
+}
+
+.todo-pane-right > * {
+  flex: 0 0 100%;
+}
+
+.todo-pane-right .head,
+.todo-pane-right .content,
+.todo-pane-right .controls {
+  display: flex;
+  border: 1px solid grey;
+  background: white;
+}
+
+.todo-pane-right .content {
+  padding: 2rem;
+}
+
+.todo-pane-right .content .markdown > * + * {
+  margin-top: 1rem;
+}
+
+.todo-pane-right .controls {
+  margin-top: 1rem;
+}
+
+.todo-pane-right .head,
+.todo-pane-right .controls {
+  flex: 0 05rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.todo-pane-right .content {
+  flex: 1 0 auto;
+  margin-top: 1rem;
+}
+
+
+/* buttons */
 button {
   background-color: #676a66;
   color: white;
@@ -45,25 +101,7 @@ button + button {
   margin-left: 1rem;
 }
 
-.todo-pane-left {
-  flex: 0 0 35%;
-  border: 1px solid grey;
-
-}
-
-.todo-pane-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  flex: 0 0 65%;
-  border: 1px solid grey;
-  padding: 1rem;
-  background-color: #dcdcdc;
-}
-
-.todo-pane-right > * {
-  flex: 0 0 100%;
-}
+/* Todo select */
 
 .todo-select {
   padding: 1rem;
@@ -84,33 +122,11 @@ button + button {
   background-color: #91e85257;
 }
 
-.todo-pane-right .head,
-.todo-pane-right .content,
-.todo-pane-right .controls {
-  display: flex;
-  border: 1px solid grey;
-  padding: 1rem;
-  background: white;
-}
-
+/* Inputs */
 input[type="text"] {
   display: block;
   width: 100%;
   padding: 0.5rem 1rem;
-}
-
-.todo-pane-right .controls {
-  margin-top: 1rem;
-}
-
-.todo-pane-right .head,
-.todo-pane-right .controls {
-  flex: 0 05rem;
-}
-
-.todo-pane-right .content {
-  flex: 1 0 auto;
-  margin-top: 1rem;
 }
 
 textarea {

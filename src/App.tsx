@@ -1,9 +1,9 @@
 import React from 'react';
-import TodoItem from './TodoItem';
-import TodoDetail from './TodoDetail';
-import './App.css';
-import { useAppContext } from './context';
-import { Todo } from './definitions'
+import TodoItem from './components/TodoItem';
+import TodoDetail from './components/TodoDetail';
+import './styles/App.css';
+import { useAppContext } from './data/context';
+import { Todo } from './data/definitions'
 
 const App: React.FC = () => {
   const context = useAppContext();
